@@ -157,7 +157,7 @@ Docker Compose es una herramienta que permite definir y ejecutar aplicaciones mu
 
 ```shell
 mvn clean package
-# Invoco a docker-compose para que me genere contenedores de todos los servicios especificadas
+# Invoco a docker-compose para que me genere contenedores de todos los services especificadas
 docker-compose up --build
 
 # Invoco a docker para que elimine los contenedores creados 
