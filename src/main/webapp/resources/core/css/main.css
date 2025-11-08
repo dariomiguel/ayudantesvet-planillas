@@ -1,0 +1,22 @@
+.img-cuadrada{
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.descripcion-recortada {
+    /* Limitar el texto a 3 líneas con puntos suspensivos*/
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        min-height: 4.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
+#galeriaSubasta .carousel-item img {
+    object-fit: contain;   /* usa contain si preferís ver la imagen completa con bordes */
+    object-position: center;
+}

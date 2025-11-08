@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Taller Web I - Nueva Subasta</title>
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}" />
+
+    <!-- Boostrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- custom style -->
+
+    <link rel="stylesheet" th:href="@{/css/categorias.css}"/>
+
+</head>
+
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: userHeader}"></div>
+
+<main role="main" class="container">
+    <div id="newSubastabox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 my-2">
+        <form action="#" th:action="@{/crearSubasta}" method="POST" th:object="${subasta}" enctype="multipart/form-data">
+            <h3 class="form-signin-heading my-4">Crear subasta</h3>
+
+            <!--
+            <label for="titulo">Nombre del producto</label>
+            <input th:field="*{titulo}" id="titulo" class="form-control" required/>
+            -->
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Nombre del producto</span>
+                <input type="text" th:field="*{titulo}" class="form-control" id="titulo" required min="0">
+            </div>
+
+            <!-- Descripcion
+            <label for="descripcion">Descripcion</label>
+            <textarea  th:field="*{descripcion}" id="descripcion" class="form-control" required></textarea>
+            -->
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Descripción</span>
+                <textarea th:field="*{descripcion}" id="descripcion" class="form-control" aria-label="With textarea" required></textarea>
+            </div>
+
+            <!-- Estado del producto
+            <label for="estadoProducto">Estado Producto</label>
+            <select th:field="*{estadoProducto}" id="estadoProducto" class="form-control" required >
+                <option value="Nuevo; En caja" selected>Nuevo; En caja</option>
+                <option value="Nuevo; Sin caja">Nuevo; Sin caja</option>
+                <option value="Usado; Como nuevo">Usado; Como nuevo</option>
+                <option value="Usado; Buen estado">Usado; Buen estado</option>
+                <option value="Usado">Usado</option>
+                <option value="Para repuestos">Para repuestos</option>
+            </select> -->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="estadoProducto">Estado del producto</label>
+                <select class="form-select" id="estadoProducto">
+                    <option value="Nuevo; En caja" selected>Nuevo; En caja</option>
+                    <option value="Nuevo; Sin caja">Nuevo; Sin caja</option>
+                    <option value="Usado; Como nuevo">Usado; Como nuevo</option>
+                    <option value="Usado; Buen estado">Usado; Buen estado</option>
+                    <option value="Usado">Usado</option>
+                    <option value="Para repuestos">Para repuestos</option>
+                </select>
+            </div>
+
+            <!-- Categorías
+            <label for="selectDeCategoriax">Categoría</label>
+            <select id="selectDeCategoriax" class="form-control" required> -->
+            <label>Medidas Producto</label>
+            <div class="medidas-horizontal">
+                <div class="campo">
+                    <label for="peso">Peso(Kg)</label>
+                    <input type="number" th:field="*{peso}" id="peso" class="form-control"  min="0" step="0.1" required/>
+                </div>
+                <div class="campo">
+                    <label for="largo">Largo(cm)</label>
+                    <input type="number" th:field="*{largo}" id="largo" class="form-control"  min="0.1" step="0.1" required/>
+                </div>
+                <div class="campo">
+                    <label for="alto">Alto(cm)</label>
+                    <input type="number" th:field="*{alto}" id="alto" class="form-control"  min="0.1" step="0.1" required/>
+                </div>
+                <div class="campo">
+                    <label for="ancho">Ancho(cm)</label>
+                    <input type="number" th:field="*{ancho}" id="ancho" class="form-control"  min="0.1" step="0.1" required/>
+                </div>
+            </div>
+
+            <!-- Categorías
+            <label for="selectDeCategoria">Categoría</label>
+            <select id="selectDeCategoria" class="form-control" required>
+                <option value="-1">Seleccione una categoría</option>
+                <option th:each="cat : ${listaCategorias}"
+                        th:value="${cat.id}"
+                        th:text="${cat.nombre}"></option>
+            </select> -->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="selectDeCategoria">Categoría</label>
+                <select class="form-select" id="selectDeCategoria" required>
+                    <option value="-1" selected>Selecciona una categoría</option>
+                    <option th:each="cat : ${listaCategorias}"
+                             th:value="${cat.id}"
+                             th:text="${cat.nombre}"></option>
+                </select>
+            </div>
+
+            <!-- Subcategorías
+            <label for="selectDeSubcategoriax">Subcategoría</label>
+            <select th:field="*{subcategoria.id}" id="selectDeSubcategoriax" class="form-control" required disabled>
+                <option value="-1" selected hidden>Seleccione una subcategoría</option>
+            </select> -->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="selectDeSubcategoria">Subcategoría</label>
+                <select th:field="*{subcategoria.id}" class="form-select" id="selectDeSubcategoria" required disabled>
+                    <option value="-1" selected hidden>Seleccione una subcategoría</option>
+                </select>
+            </div>
+
+            <!-- Monto inicial
+            <label for="precioInicial">Monto inicial de Subasta</label>
+            <input type="number" th:field="*{precioInicial}" id="precioInicial" class="form-control" required min="0"/>
+            -->
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Precio inicial</span>
+                <input type="number" th:field="*{precioInicial}" class="form-control" id="precioInicial" aria-label="Amount (to the nearest dollar)" required min="0">
+                <span class="input-group-text">$</span>
+            </div>
+
+            <!--
+            <label for="select_fechaFin">Duracion Subasta</label>
+            <select th:field="*{estadoSubasta}" id="select_fechaFin" class="form-control" required>
+                <option value="" selected disabled>Seleccionar duracion</option>
+                <option value="0">Express (12 horas)</option>
+                <option value="1">Rapido (1 dia)</option>
+                <option value="2">Normal (3 dia)</option>
+                <option value="3">Prolongado (7 dia)</option>
+            </select> -->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="select_fechaFin">Duración</label>
+                <select th:field="*{estadoSubasta}" id="select_fechaFin" class="form-select" required>
+                    <option value="" selected disabled>Seleccionar duracion</option>
+                    <option value="0">Express (12 horas)</option>
+                    <option value="1">Rapido (1 dia)</option>
+                    <option value="2">Normal (3 dia)</option>
+                    <option value="3">Prolongado (7 dia)</option>
+                </select>
+            </div>
+
+            <!-- Imagen
+            <div class="form-group">
+                <label for="imagenSubasta">Foto del Producto (Max. 3)</label>
+                <input type="file" class="form-control-file" id="imagenSubasta" name="imagenSubasta" accept="image/*" multiple required>
+            </div> -->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="imagenSubasta">Fotos</label>
+                <input type="file" class="form-control" id="imagenSubasta" name="imagenSubasta" accept="image/*" multiple required>
+                <label class="input-group-text" for="imagenSubasta">Máximo 3</label>
+            </div>
+
+            <!-- Para la gente confundida, asi se llama la foto subida:
+            <img th:if="${subasta.imagen != null}" th:src="@{/imagen/{subastaID}/{imagenID}(subastaID=${subasta.id})}" class="img-thumbnail" alt="">
+            -->
+
+            <button id="btn-crearSubasta" class="btn btn-lg btn-primary btn-block" type="submit">Crear</button>
+            <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}">
+            </p>
+        </form>
+    </div>
+</main>
+<!-- /.container -->
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- Boostrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<script type="module" th:src="@{js/subasta.js}"></script>
+<script type="module" th:src="@{js/mostrar-select-option-subcategorias.js}"></script>
+
+</body>
+</html>
