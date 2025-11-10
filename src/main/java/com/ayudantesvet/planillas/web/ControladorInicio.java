@@ -9,9 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ControladorInicio {
 
-    @Autowired
-    public ControladorInicio(){
-    }
+/*    @Autowired
+    public ControladorInicio() {
+
+    }*/
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {
