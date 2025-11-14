@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <!-- custom style -->
-    <link rel="stylesheet" th:href="@{/style/main.css}"/>
+    <link rel="stylesheet" th:href="@{/styles/main.css}"/>
 </head>
 
 
@@ -21,7 +21,17 @@
 
     <main class="container p-5 text-center">
         <h1>Inicio</h1>
+        <h2 class="display-4">Planilla Circular 4301</h2>
     </main>
+
+    <section class="container p-5 text-center">
+        <form class="p-5" method="get" th:action="@{/exportar/planillassop-mensual/xlsx}">
+            <button type="submit" class="btn btn-primary">Crear Excel</button>
+        </form>
+        <form class="p-5" method="get" th:action="@{/exportar/planillassop-diaria/pdf}">
+            <button type="submit" class="btn btn-primary">Crear PDF</button>
+        </form>
+    </section>
 
     <!-- Footer -->
     <footer th:replace="~{fragments/footer :: footer}"></footer>

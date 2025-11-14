@@ -15,12 +15,12 @@ public class ControladorInicio {
     }*/
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public ModelAndView inicio() {
+    public ModelAndView irAInicio() {
         return new ModelAndView("redirect:/inicio");
     }
 
     @RequestMapping(path = "/inicio", method = RequestMethod.GET)
-    public ModelAndView irAInicio() {
+    public ModelAndView inicio() {
         return new ModelAndView("inicio");
     }
 }
