@@ -1,7 +1,11 @@
-Proyecto base Taller Web I (Maven and Thymeleaf)
+Generador Inteligente de Planillas SSOPPS de Control SENASA 4301
 ===============================
+## Sistema que genera planillas diarias de tareas para recorridas a partir de la planilla mensual de control exigida por SENASA (Circular 4301), facilitando el registro, organización y documentación de procesos operativos.
 
-## Preparación del ambiente de desarrollo
+___
+
+
+### Preparación del ambiente de desarrollo
 Antes de comenzar a trabajar con el proyecto, debemos instalar y configurar algunas herramientas:
 
 ### Java
@@ -68,7 +72,14 @@ $ mvn clean jetty:run
 ## 6. Jetty
 * [Documentación](https://eclipse.dev/jetty/documentation/jetty-9/index.html#maven-and-jetty)
 
-## 7. ¿Cómo correr las pruebas de punta a punta?
+## 7. APACHE POI
+* [Documentación](https://poi.apache.org/apidocs/5.0/)
+
+## 8. PDFBox
+* [Documentación](https://javadoc.io/doc/org.apache.pdfbox/pdfbox/latest/index.html)
+
+
+## 9. ¿Cómo correr las pruebas de punta a punta?
 
 ### Iniciar el servidor
 ```shell
@@ -84,7 +95,7 @@ $ mvn test -Dtest="VistaLoginE2E"
 $ mvn test -Dtest="VistaLoginE2E#deberiaNavegarAlHomeSiElUsuarioExiste"
 ```
 
-## 8. ¿Cómo correr las pruebas unitarias de javascript?
+## 10. ¿Cómo correr las pruebas unitarias de javascript?
 ```shell
 $ cd src/main/webapp/resources/core/js
 # Si es la primera vez debo descargar e instalar las dependencias
@@ -93,7 +104,7 @@ $ npm install
 $ npm run test
 ```
 
-## 9. Docker:
+## 11. Docker:
 Los archivos de docker de este proyecto estan preparados para desplegar un archivo WAR usando el servido Jetty o Tomcat.
 El archivo de docker para Jetty y Tomcat esperan que el archivo WAR se debe llamar "planillasvet-base-1.0-SNAPSHOT" para eso debemos modificar los atributos <artifactId> y <version> del archivo pom.xml. 
 
@@ -113,7 +124,7 @@ Una vez que tenemos la imagen generada, podemos instanciar un contenedor y ejecu
 docker run -p 8080:8080 planillasvet
 ```
 
-### 9. Comandos básicos:
+### 12. Comandos básicos:
 ```shell
 # Crear una imagen con el nombre "planillasvet".
 docker build -f DockerfileJetty -t planillasvet .
@@ -152,7 +163,7 @@ docker build -f DockerfileSQL -t mysql .
 docker run --env-file .env --name mysql-container -d -p 3306:3306 mysql # sudo apt install mysql-client
 ```
 
-## 10. docker-compose
+## 13. docker-compose
 Docker Compose es una herramienta que permite definir y ejecutar aplicaciones multi-contenedor usando archivos YAML. Simplifica la gestión de múltiples servicios y sus dependencias, permitiendo orquestar todo el stack de la aplicación con un solo comando.
 
 ```shell
@@ -164,7 +175,7 @@ docker-compose up --build
 docker-compose down
 docker-compose down --rmi local #Elimina la imagen del proyecto
 ```
-## 11. Comandos de Maven
+## 14. Comandos de Maven
 Para ejecutar comandos de Maven, ya sea en el terminal integrado al IDE, o en otro terminal como el de Linux o Windows (CMD), se debe utilizar el comando principal `mvn` seguido del comando o fase del ciclo de vida a ejecutar. Ejemplo: `mvn clean`.
 
 > Maven ejecuta todas las fases anteriores a la fase del ciclo de vida indicada.
@@ -223,5 +234,7 @@ mvn clean install
 * Playwright 1.36.0
 * Node 18.16.1 o superior <- Instalación manual desde la [página de node](https://nodejs.org/en) 
 * npm --> npm install -g npm
+* Apache POI 5.2.3
+* PDFBox 2.0.27
 
 *_Proyecto modificado en base a: [Spring MVC hello world example (Maven and Thymeleaf)](https://mkyong.com/spring-mvc/spring-mvc-hello-world-example/) _*
